@@ -1,0 +1,29 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+
+  <h1>All Authors</h1>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% authors.forEach(author => { %>
+            <tr>
+                <td><%= author.first_name %></td>
+                <td><%= author.last_name %></td>
+                <td><%= author.email %></td>
+                <td>
+                  <a href="/authors/<%= author.author_id %>/delete">Delete</a>
+                  <a href="/authors/<%= author.author_id %>/update">Update</a>
+                </td>
+              </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>

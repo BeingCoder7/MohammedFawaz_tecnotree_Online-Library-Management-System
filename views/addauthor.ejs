@@ -1,0 +1,21 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+    <form class="row g-3" method="post" action="/addauthors">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">First Name</label>
+          <input type="text" class="form-control" name="first_name">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Last Name</label>
+          <input type="text" class="form-control" name="last_name" >
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" >
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>

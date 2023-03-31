@@ -1,0 +1,46 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+
+  <h1>All Books</h1>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Publish Date</th>
+        <th>Quantity</th>
+        <th>Author ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(book => { %>
+        <% if(book.quantity==0)  {%>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.publisher %></td>
+          <td><%= book.publish_date %></td>
+          <td><%= book.quantity %></td>
+          <td><%= book.author_id %></td>
+          <td>
+           Out of Stock
+          </td>
+        </tr>
+        <%} else{ %>
+            <tr>
+                <td><%= book.title %></td>
+                <td><%= book.publisher %></td>
+                <td><%= book.publish_date %></td>
+                <td><%= book.quantity %></td>
+                <td><%= book.author_id %></td>
+                <td>
+                  <a href="/books/<%= book.book_id %>/delete">Delete</a>
+                  <a href="/books/<%= book.book_id %>/update">Update</a>
+                </td>
+              </tr>
+              <%}%>
+      <% }); %>
+    </tbody>
+  </table>
+</div>

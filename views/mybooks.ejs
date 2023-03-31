@@ -1,0 +1,36 @@
+<%- include('./partials/userBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+    <% if (borrowedBooks.length === 0) { %>
+        <p class="text-danger">You have not borrowed any books yet.</p>
+      <% } else { %>
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th>Title</th>
+              <th>Borrowed Date</th>
+              <th>Return Date</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% borrowedBooks.forEach(book => { %>
+              <tr>
+                <td><%= book.title %></td>
+                <td><%= book.borrowed_date.toDateString() %></td>
+                <% if (book.return_date) { %>
+                  <td><%= book.return_date.toDateString() %></td>
+                  <td>Returned</td>
+                <% } else { %>
+                  <td>-</td>
+                  <td>
+                    <a href="/books/<%= book.book_id %>/return" disabled>Return</a>
+                  </td>
+                <% } %>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } %>
+</div>

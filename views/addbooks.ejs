@@ -1,0 +1,29 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+    <form class="row g-3" method="post" action="/addbooks">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Publisher</label>
+          <input type="text" class="form-control" name="publisher" >
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Publish Date</label>
+          <input type="date" class="form-control" name="publish_date" >
+        </div>
+        <div class="col-12">
+          <label for="inputAddress2" class="form-label">Quantity</label>
+          <input type="text" class="form-control" name="quantity">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress2" class="form-label">Author ID</label>
+            <input type="text" class="form-control" name="author_id">
+          </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>

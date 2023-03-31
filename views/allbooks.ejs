@@ -1,0 +1,42 @@
+<%- include('./partials/userBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+
+  <h1>All Books</h1>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Publisher</th>
+        <th>Publish Date</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(book => { %>
+        <% if(book.quantity==0)  {%>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.publisher %></td>
+          <td><%= book.publish_date %></td>
+          <td><%= book.quantity %></td>
+          <td>
+           Out of Stock
+          </td>
+        </tr>
+        <%} else{ %>
+            <tr>
+                <td><%= book.title %></td>
+                <td><%= book.publisher %></td>
+                <td><%= book.publish_date %></td>
+                <td><%= book.quantity %></td>
+                <td>
+                  <a href="/books/<%= book.book_id %>/borrow" disabled>Borrow</a>
+                </td>
+              </tr>
+              <%}%>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
