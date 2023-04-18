@@ -16,8 +16,33 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: letmein
       MYSQL_ROOT_PASSWORD: letmein
-      SERVICE_TAGS: dev
+      SERVICE_TAGS: prod
       SERVICE_NAME: mysqldb
+    networks:
+      - internalnet
+  nodeapp:
+    container_name: nodeapp
+    build: .
+    image: nodeapp:v1
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    volumes:
+      - $HOME/nodeapp:/code
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    environment:
+      DB_HOST: mysqldb
+      DB_PORT: 3306
+      DB_USER: 'admin'
+      DB_PASSWORD: 'letmein'
+      DB_NAME: library
+      SERVICE_TAGS: prod
+      SERVICE_NAME: nodeappservice
+      SERVER_PORT: 3000
+    depends_on:
+      - mysqldb
     networks:
       - internalnet
 
