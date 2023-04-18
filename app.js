@@ -4,7 +4,13 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const dotenv =  require('dotenv')
+const cors = require('cors')
 
+dotenv.config();
+const PORT = process.env.SERVER_PORT || 3000;
+
+app.use(cors({origin:'*'}));
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(bodyParser.json());
@@ -16,11 +22,14 @@ app.use(session({
   }));
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'fawaz123',
-  database: 'library'
+  host: process.env.DB_HOST,
+  port:process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
+
+console.log(process.env)
 
 app.get('/',authenticatedCheck,(req,res)=>{
     res.render('home',{body:'',title:"Home",messages:req.flash()})
@@ -431,7 +440,7 @@ app.get('/logout', function(req, res) {
 
 
 
-app.listen(3000,(req,res)=>{
-    console.log("listening of port 3000")
+app.listen(PORT,(req,res)=>{
+    console.log(`listening of port ${PORT}`)
 })
 
